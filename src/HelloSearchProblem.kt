@@ -1,6 +1,7 @@
 /**
  * Created by igor on 2.7.2017.
  */
+
 class HelloSearchProblem(private var goal: String) : SearchProblemInterface<String, Char> {
 
     override fun getPossibleActions(state: String): List<Char> {
