@@ -8,5 +8,5 @@ interface SearchProblemInterface<StateType, ActionType> {
     fun getActionCost(action: ActionType): Double
     fun getHeuristic(state: StateType): Double
     fun isGoal(state: StateType): Boolean
-    fun setGoal(goal: StateType)
+    fun setGoal(newGoal: StateType)
 }

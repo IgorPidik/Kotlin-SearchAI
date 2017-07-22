@@ -4,20 +4,14 @@
 class HelloSearchProblem(private var goal: String) : SearchProblemInterface<String, Char> {
 
     override fun getPossibleActions(state: String): List<Char> {
-        if (state is String) {
-            if (state.length < goal.length) {
-                return " ABCDEFGHIJKLMNOPQRSTUVWXYZ".toList()
-            }
-            return emptyList()
+        if (state.length < goal.length) {
+            return " ABCDEFGHIJKLMNOPQRSTUVWXYZ".toList()
         }
-        throw IllegalArgumentException("state variable must be of type String!")
+        return emptyList()
     }
 
     override fun getSuccessor(state: String, action: Char): String {
-        if (state is String && action is Char) {
-            return state + action
-        }
-        throw IllegalArgumentException("state must be of type String and action must be of type Char!")
+        return state + action
     }
 
     override fun getActionCost(action: Char): Double {
@@ -25,19 +19,15 @@ class HelloSearchProblem(private var goal: String) : SearchProblemInterface<Stri
     }
 
     override fun getHeuristic(state: String): Double {
-        if (state is String) {
-            var counter = 0;
-            state.indices
-                    .filter { state[it] == goal[it] }
-                    .forEach { counter += 1 }
-            return (goal.length - counter).toDouble()
-        }
-        throw IllegalArgumentException("state variable must be of type String!")
+        var counter = 0
+        state.indices
+                .filter { state[it] == goal[it] }
+                .forEach { counter += 1 }
+        return (goal.length - counter).toDouble()
     }
 
     override fun isGoal(state: String): Boolean {
-        if (state is String) return state == goal
-        throw IllegalArgumentException("state variable must be of type String!")
+        return state == goal
     }
 
     override fun setGoal(newGoal: String) {
